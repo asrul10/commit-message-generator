@@ -64,9 +64,7 @@ def generate_commit_message(diff) -> str:
             return ""
 
         message = message.strip()
-
-        if "```gitcommit" in message and "```" in message.split("```gitcommit", 1)[1]:
-            message = message.split("```gitcommit", 1)[1].split("```", 1)[0].strip()
+        message = message.replace("```gitcommit", "").replace("```", "").strip()
 
         return message
     except Exception as e:
@@ -76,8 +74,12 @@ def generate_commit_message(diff) -> str:
 
 def commit_and_push(commit_message):
     try:
-        subprocess.run(["git", "commit", "-m", commit_message], check=True)
-        print(f"Committed with message:\n{commit_message}")
+        subprocess.run(
+            ["git", "commit", "-m", commit_message],
+            check=True,
+            stdout=subprocess.DEVNULL,
+        )
+        print(commit_message)
 
         push = input("Push changes to remote? (y/n): ").lower()
         if push == "y":
