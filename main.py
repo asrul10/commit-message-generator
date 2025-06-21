@@ -81,7 +81,7 @@ def commit_and_push(commit_message):
         )
         print(commit_message)
 
-        push = input("Push changes to remote? (y/n): ").lower()
+        push = input("Push changes to remote? (y/N): ").lower()
         if push == "y":
             subprocess.run(["git", "push"], check=True)
             print("Changes pushed successfully")
