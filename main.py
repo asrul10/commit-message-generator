@@ -40,7 +40,7 @@ def generate_commit_message(diff) -> str:
         }
 
         payload = {
-            "model": "gpt-4o-mini",
+            "model": "gpt-4.1-mini",
             "messages": [
                 {
                     "role": "system",
@@ -80,11 +80,6 @@ def commit_and_push(commit_message):
             stdout=subprocess.DEVNULL,
         )
         print(commit_message)
-
-        push = input("Push changes to remote? (y/N): ").lower()
-        if push == "y":
-            subprocess.run(["git", "push"], check=True)
-            print("Changes pushed successfully")
     except subprocess.CalledProcessError as e:
         print(f"Error in git operations: {e}")
         sys.exit(1)

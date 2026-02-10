@@ -1,0 +1,7 @@
+[project]
+name = "auto-commit"
+version = "0.1.0"
+description = "Automate your git commits with ease."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
